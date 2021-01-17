@@ -2,14 +2,14 @@ import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 
-function App() {
-  const name = 'Mark';
+function App(props) {
+  const subject = props.subject;
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Hello, World! {name}
+          Hello, {subject}!
         </p>
       </header>
     </div>
