@@ -3,9 +3,15 @@ import Todo from './components/Todo';
 
 function App(props) {
   console.log('props', props.tasks);
-  const taskList = props.tasks.map(task => {
-    return <Todo name={task.name} id={task.id} completed={task.completed}/>;
-  });
+  const taskList = props.tasks.map(task => (
+      <Todo
+        name={task.name}
+        id={task.id}
+        completed={task.completed}
+        key={task.id}
+      />
+    )
+  );
   return (
     <div className="todoapp stack-large">
       <h1>TodoMatic</h1>
