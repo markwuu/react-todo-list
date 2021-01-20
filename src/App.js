@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Todo from './components/Todo';
 import Form from './components/Form';
 import FilterButton from './components/FilterButton';
+import { nanoid } from "nanoid";
 
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks)
@@ -18,7 +19,7 @@ function App(props) {
   function addTask(name) {
     alert(name);
     console.log('tasks', tasks);
-    const newTask = {id: "todo-3", name: name, completed: false};
+    const newTask = {id: "todo" + nanoid(), name: name, completed: false};
     setTasks([...tasks, newTask]);
   }
 
