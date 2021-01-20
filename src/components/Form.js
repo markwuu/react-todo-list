@@ -5,6 +5,7 @@ export default function Form(props) {
 
     function handleSubmit(e){
         e.preventDefault();
+        if(!name){ return };
         props.addTask(name);
         setName('');
     }
