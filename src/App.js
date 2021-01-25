@@ -51,8 +51,6 @@ function App(props) {
   }
 
   function addTask(name) {
-    alert(name);
-    console.log('tasks', tasks);
     const newTask = {id: "todo" + nanoid(), name: name, completed: false};
     setTasks([...tasks, newTask]);
   }
@@ -68,9 +66,7 @@ function App(props) {
   }
 
   function deleteTask(id) {
-    console.log('id', id);
     const updatedTasks = tasks.filter(task => id !== task.id );
-    console.log('updatedTask', updatedTasks);
     setTasks(updatedTasks);
   }
 
