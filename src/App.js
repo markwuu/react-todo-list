@@ -17,10 +17,17 @@ function App(props) {
   const [filter, setFilter] = useState('All');
 
   const filterList = FILTER_NAMES.map(name => (
-    <FilterButton key={name} name={name}/>
+    <FilterButton
+      key={name}
+      name={name}
+      isPressed={name === filter}
+      setFilter={setFilter}
+    />
   ))
 
-  const taskList = tasks.map(task => (
+  const taskList = tasks
+    .filter(FILTER_MAP[filter])
+    .map(task => (
       <Todo
         name={task.name}
         id={task.id}
