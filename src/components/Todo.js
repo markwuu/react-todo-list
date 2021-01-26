@@ -1,10 +1,19 @@
 import React, { useState, useRef, useEffect } from 'react';
 
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
 export default function Todo(props) {
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState('');
   const editFieldRef = useRef(null);
   const editButtonRef = useRef(null);
+  const wasEditing = usePrevious(isEditing);
 
   function handleChange(e){
     setNewName(e.target.value);
@@ -83,10 +92,13 @@ export default function Todo(props) {
 
   useEffect(() => {
     console.log('side effect');
-    if(isEditing){
+    if(!wasEditing && isEditing){
       editFieldRef.current.focus();
     }
-  }, [isEditing]);
+    if(wasEditing && !isEditing) {
+      editButtonRef.current.focus();
+    }
+  }, [wasEditing, isEditing]);
 
   return <li className="todo">{isEditing ? editingTemplate : viewTemplate}</li>;
 }
